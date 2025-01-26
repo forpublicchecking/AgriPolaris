@@ -1,0 +1,167 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative; /* 位置を相対的に設定 */
+}
+header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: white;
+    position: fixed; /* 固定位置 */
+    top: 0; /* 上部に固定 */
+    z-index: 1000; /* 他の要素の上に表示 */
+}
+.forward-button {
+    position: fixed; /* 固定位置 */
+    bottom: 50px; /* 下から20px */
+    right: 50px; /*  */
+    background-color: rgba(0, 176, 80, 1); /* ボタンの背景色 */
+    color: white; /* テキスト色 */
+    border: none; /* ボーダーなし */
+    border-radius: 50px; 
+    width: 150px; /* 幅 */
+    height: 50px; /* 高さ */
+    font-size: 1.2em; /* フォントサイズ */
+    display: flex; /* フレックスボックスを使用 */
+    align-items: center; /* 垂直方向に中央揃え */
+    justify-content: center; /* 水平方向に中央揃え */
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25); /* シャドウ効果 */
+    cursor: pointer; /* カーソルをポインターに */
+    z-index: 1000; /* 他の要素の上に表示 */
+}
+.back-button {
+    position: fixed; /* 固定位置 */
+    bottom: 50px; /* 下から20px */
+    left: 70px;
+    background-color: rgba(153, 153, 153, 1); /* ボタンの背景色 */
+    color: white; /* テキスト色 */
+    border: none; /* ボーダーなし */
+    border-radius: 50px; 
+    width: 100px; /* 幅 */
+    height: 50px; /* 高さ */
+    font-size: 1.2em; /* フォントサイズ */
+    display: flex; /* フレックスボックスを使用 */
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25); /* シャドウ効果 */
+    cursor: pointer; /* カーソルをポインターに */
+    z-index: 1000; /* 他の要素の上に表示 */
+}
+.circle-number{
+    background-color: rgba(0, 97, 44, 1); /* ボタンの背景色 */
+    color: white; /* テキスト色 */
+    border: none; /* ボーダーなし */
+    border-radius: 50%; /* 丸い形 */
+    width: 60px; /* 幅 */
+    height: 60px; /* 高さ */
+    font-size: 24px; /* フォントサイズ */
+    align-items: center; /* 垂直方向に中央揃え */
+    justify-content: center; /* 水平方向に中央揃え */
+}
+.container-1{
+    font-weight: bold;
+    flex: 1; /* 各要素が均等にスペースを占める */
+    text-align: center;
+    align-items: center; /* 垂直方向に中央揃え */
+    justify-content: center; /* 水平方向に中央揃え */
+    box-sizing: border-box; /* パディングを含めたサイズ計算 */
+}
+.container-2{
+    font-weight: bold;
+    font-size: 1.2em;
+    flex: 2; /* 各要素が均等にスペースを占める */
+    text-align: center;
+    align-items: center; /* 垂直方向に中央揃え */
+    justify-content: center; /* 水平方向に中央揃え */
+    box-sizing: border-box; /* パディングを含めたサイズ計算 */
+}
+.progress-bar {
+    font-size: 1.2em;
+    display: flex;
+    flex-direction: row;
+}
+.progress-bar-active-color{
+    color: rgba(0, 97, 44, 1);
+    margin: 10px;
+    border-bottom: 3px solid rgba(0, 97, 44, 1); /* 下線の太さと色を指定 */
+    display: inline; /* インライン要素として表示 */
+}
+.progress-bar-nonactive-color{
+    color: rgba(153, 153, 153, 1);
+    margin: 10px;
+}
+.total {
+    font-size: 1.2em;
+    border-radius: 10px;
+    background-color: rgba(0, 176, 80, 1);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    color: white;
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+}
+.product-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 110px;
+    padding: 20px; /* 上部に余白を追加 */
+    width: 100%;
+    max-width: 500px;
+}
+.product-card {
+    border: 1px solid rgba(153, 153, 153, 1);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+.product-image {
+    width: 100%;
+    height: 50%;
+    max-height: 100px;
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(211, 211, 211, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2em;
+}
+.quantity-controls {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.quantity-button {
+    width: 50px; /* ボタンの幅を設定 */
+    height: 30px; /* ボタンの高さを設定 */
+    background-color: #555;
+    color: white;
+    border: none;
+    border-radius: 30px; /* 陸上トラックの形にするための角丸 */
+    align-items: center; /* 垂直方向に中央揃え */
+    justify-content: center; /* 水平方向に中央揃え */
+    cursor: pointer;
+    font-size: 1.5em; /* フォントサイズを設定 */
+    position: relative;
+    margin: 0 5px; /* ボタン間の余白 */
+}

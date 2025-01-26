@@ -3,279 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>商品発注アプリ</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative; /* 位置を相対的に設定 */
-        }
-        header {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            padding: 10px;
-            background-color: #f8f8f8;
-            border-bottom: 1px solid #ccc;
-            position: fixed; /* 固定位置 */
-            top: 0; /* 上部に固定 */
-            z-index: 1000; /* 他の要素の上に表示 */
-        }
-        .total {
-            font-size: 1.2em;
-            background-color: gray;
-            color: white;
-            padding: 10px;
-            border-radius: 5px;
-            text-align: center;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .cart-button {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .product-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            padding: 80px 20px 20px; /* 上部に余白を追加 */
-            width: 100%;
-            max-width: 900px;
-        }
-        .product-card {
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 10px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-        }
-        .product-image {
-            width: 100%;
-            height: 50%;
-            max-height: 100px;
-        }
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(211, 211, 211, 0.5);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-size: 2em;
-        }
-        .quantity-controls {
-            display: none;
-            justify-content: center;
-            align-items: center;
-            margin-top: 10px;
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        .quantity-button {
-            width: 40px; /* ボタンの幅を設定 */
-            height: 20px; /* ボタンの高さを設定 */
-            background-color: #555;
-            color: white;
-            border: none;
-            border-radius: 10px; /* 陸上トラックの形にするための角丸 */
-            cursor: pointer;
-            font-size: 1em; /* フォントサイズを設定 */
-            position: relative;
-            margin: 0 5px; /* ボタン間の余白 */
-        }
-        .scroll-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #007bff;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            z-index: 1000; /* 他の要素の上に表示 */
-        }
-    </style>
+    <title>商品選択</title>
+    <link rel="stylesheet" href="css/styles.css"> <!-- CSSファイルをリンク -->
+    <script src="js/script.js" defer></script> <!-- JavaScriptファイルをリンク -->
 </head>
 <body>
 
 <header>
-    <div class="total">合計金額: ¥<span id="totalAmount">0</span></div>
-    <button class="cart-button">カートに入れる</button>
+    <div class="progress-bar">
+        <div class="progress-bar-active-color container-1">①選択</div>
+        <div class="progress-bar-nonactive-color container-1">②確認</div>
+        <div class="progress-bar-nonactive-color container-1">③完了</div>
+    </div>
+    <div class="total">
+        <div class="container-1">合計金額</div>
+        <div class="container-2">¥<span id="totalAmount">0</span></div>
+    </div>
 </header>
 
+<div>
+    <button class="container-1 forward-button" onclick="navigate_register()">レジに進む</button>
+    <button class="container-1 back-button" onclick="navigate_register()">戻る</button>
+</div>
+
 <div class="product-container">
-    <div class="product-card" id="productcard1" onclick="addProduct(1, 100)">
-        <img src="https://tegakisozai.com/wp-content/uploads/2020/03/yasai_ninzin.png" alt="にんじん" class="product-image">
+    <div class="product-card" id="productcard1 cost_carrot" onclick="addProduct(1, cost_carrot)">
         <h3>にんじん</h3>
+        <img src="img/carrot.png" alt="にんじん" class="product-image">
         <p>¥100</p>
         <div class="overlay" id="overlay1">0</div>
         <div class="quantity-controls" id="quantityControls1">
-            <button class="quantity-button" onclick="changeQuantity(-1, 100, 1)">-</button>
-            <button class="quantity-button" onclick="changeQuantity(1, 100, 1)">+</button>
+            <button class="quantity-button" onclick="changeQuantity(-1, cost_carrot, 1)">-</button>
+            <button class="quantity-button" onclick="changeQuantity(1, cost_carrot, 1)">+</button>
         </div>
     </div>
-    <div class="product-card" onclick="addProduct(2, 150)">
-        <img src="https://tegakisozai.com/wp-content/uploads/2021/02/yasai_daikon1.png" alt="だいこん" class="product-image">
-        <h3>だいこん</h3>
+    <div class="product-card cost_radish" onclick="addProduct(2, cost_radish)">
+        <h3>大根</h3>
+        <img src="img/radish.png" alt="だいこん" class="product-image">
         <p>¥150</p>
         <div class="overlay" id="overlay2">0</div>
         <div class="quantity-controls" id="quantityControls2">
-            <button class="quantity-button" onclick="changeQuantity(-1, 150, 2)">-</button>
-            <button class="quantity-button" onclick="changeQuantity(1, 150, 2)">+</button>
+            <button class="quantity-button" onclick="changeQuantity(-1, cost_radish, 2)">-</button>
+            <button class="quantity-button" onclick="changeQuantity(1, cost_radish, 2)">+</button>
         </div>
     </div>
-    <div class="product-card" onclick="addProduct(3, 200)">
-        <img src="https://tegakisozai.com/wp-content/uploads/2021/07/tabemono_yasai_kyabetu.png" alt="きゃべつ" class="product-image">
-        <h3>きゃべつ</h3>
+    <div class="product-card cost_cabbage" onclick="addProduct(3, cost_cabbage)">
+        <h3>キャベツ</h3>
+        <img src="img/cabbage.png" alt="きゃべつ" class="product-image">
         <p>¥200</p>
         <div class="overlay" id="overlay3">0</div>
         <div class="quantity-controls" id="quantityControls3">
-            <button class="quantity-button" onclick="changeQuantity(-1, 200, 3)">-</button>
-            <button class="quantity-button" onclick="changeQuantity(1, 200, 3)">+</button>
+            <button class="quantity-button" onclick="changeQuantity(-1, cost_cabbage, 3)">-</button>
+            <button class="quantity-button" onclick="changeQuantity(1, cost_cabbage, 3)">+</button>
         </div>
     </div>
-    <div class="product-card" onclick="addProduct(4, 100)">
-        <img src="https://tegakisozai.com/wp-content/uploads/2020/03/yasai_ninzin.png" alt="にんじん" class="product-image">
-        <h3>にんじん</h3>
-        <p>¥100</p>
+    <div class="product-card cost_broccoli" onclick="addProduct(4, cost_broccoli)">
+        <h3>ブロッコリー</h3>
+        <img src="img/broccoli.png" alt="ブロッコリー" class="product-image">
+        <p>¥200</p>
         <div class="overlay" id="overlay4">0</div>
         <div class="quantity-controls" id="quantityControls4">
-            <button class="quantity-button" onclick="changeQuantity(-1, 100, 4)">-</button>
-            <button class="quantity-button" onclick="changeQuantity(1, 100, 4)">+</button>
+            <button class="quantity-button" onclick="changeQuantity(-1, cost_broccoli, 4)">-</button>
+            <button class="quantity-button" onclick="changeQuantity(1, cost_broccoli, 4)">+</button>
         </div>
     </div>
-    <div class="product-card" onclick="addProduct(5, 150)">
-        <img src="https://tegakisozai.com/wp-content/uploads/2021/02/yasai_daikon1.png" alt="だいこん" class="product-image">
-        <h3>だいこん</h3>
+    <div class="product-card cost_tomato" onclick="addProduct(5, cost_tomato)">
+        <h3>トマト</h3>
+        <img src="img/tomato_red.png" alt="トマト" class="product-image">
         <p>¥150</p>
         <div class="overlay" id="overlay5">0</div>
         <div class="quantity-controls" id="quantityControls5">
-            <button class="quantity-button" onclick="changeQuantity(-1, 150, 5)">-</button>
-            <button class="quantity-button" onclick="changeQuantity(1, 150, 5)">+</button>
+            <button class="quantity-button" onclick="changeQuantity(-1, cost_tomato, 5)">-</button>
+            <button class="quantity-button" onclick="changeQuantity(1, cost_tomato, 5)">+</button>
         </div>
     </div>
-    <div class="product-card" onclick="addProduct(6, 200)">
-        <img src="https://tegakisozai.com/wp-content/uploads/2021/07/tabemono_yasai_kyabetu.png" alt="きゃべつ" class="product-image">
-        <h3>きゃべつ</h3>
-        <p>¥200</p>
+    <div class="product-card cost_chinese_cab" onclick="addProduct(6, cost_chinese_cab)">
+        <h3>白菜</h3>
+        <img src="img/chinesecabbage.png" alt="白菜" class="product-image">
+        <p>¥250</p>
         <div class="overlay" id="overlay6">0</div>
         <div class="quantity-controls" id="quantityControls6">
-            <button class="quantity-button" onclick="changeQuantity(-1, 200, 6)">-</button>
-            <button class="quantity-button" onclick="changeQuantity(1, 200, 6)">+</button>
+            <button class="quantity-button" onclick="changeQuantity(-1, cost_chinese_cab, 6)">-</button>
+            <button class="quantity-button" onclick="changeQuantity(1, cost_chinese_cab, 6)">+</button>
         </div>
     </div>
-    <div class="product-card" onclick="addProduct(7, 100)">
-        <img src="https://tegakisozai.com/wp-content/uploads/2020/03/yasai_ninzin.png" alt="にんじん" class="product-image">
-        <h3>にんじん</h3>
-        <p>¥100</p>
+    <div class="product-card cost_eggplant" onclick="addProduct(7, cost_eggplant)">
+        <h3>なす</h3>
+        <img src="img/eggplant.png" alt="なす" class="product-image">
+        <p>¥70</p>
         <div class="overlay" id="overlay7">0</div>
         <div class="quantity-controls" id="quantityControls7">
-            <button class="quantity-button" onclick="changeQuantity(-1, 100, 7)">-</button>
-            <button class="quantity-button" onclick="changeQuantity(1, 100, 7)">+</button>
+            <button class="quantity-button" onclick="changeQuantity(-1, cost_eggplant, 7)">-</button>
+            <button class="quantity-button" onclick="changeQuantity(1, cost_eggplant, 7)">+</button>
         </div>
     </div>
-    <div class="product-card" onclick="addProduct(8, 150)">
-        <img src="https://tegakisozai.com/wp-content/uploads/2021/02/yasai_daikon1.png" alt="だいこん" class="product-image">
-        <h3>だいこん</h3>
-        <p>¥150</p>
+    <div class="product-card cost_green_papper" onclick="addProduct(8, cost_green_papper)">
+        <h3>ピーマン</h3>
+        <img src="img/greenpapper.png" alt="ピーマン" class="product-image">
+        <p>¥50</p>
         <div class="overlay" id="overlay8">0</div>
         <div class="quantity-controls" id="quantityControls8">
-            <button class="quantity-button" onclick="changeQuantity(-1, 150, 8)">-</button>
-            <button class="quantity-button" onclick="changeQuantity(1, 150, 8)">+</button>
+            <button class="quantity-button" onclick="changeQuantity(-1, cost_green_papper, 8)">-</button>
+            <button class="quantity-button" onclick="changeQuantity(1, cost_green_papper, 8)">+</button>
         </div>
     </div>
-    <div class="product-card" onclick="addProduct(9, 200)">
-        <img src="https://tegakisozai.com/wp-content/uploads/2021/07/tabemono_yasai_kyabetu.png" alt="きゃべつ" class="product-image">
-        <h3>きゃべつ</h3>
-        <p>¥200</p>
+    <div class="product-card" onclick="addProduct(9, cost_onion)">
+        <h3>玉ねぎ</h3>
+        <img src="img/onion.png" alt="玉ねぎ" class="product-image">
+        <p>¥30</p>
         <div class="overlay" id="overlay9">0</div>
         <div class="quantity-controls" id="quantityControls9">
-            <button class="quantity-button" onclick="changeQuantity(-1, 200, 9)">-</button>
-            <button class="quantity-button" onclick="changeQuantity(1, 200, 9)">+</button>
-        </div>
-    </div>
-    <div class="product-card" onclick="addProduct(10, 100)">
-        <img src="https://tegakisozai.com/wp-content/uploads/2020/03/yasai_ninzin.png" alt="にんじん" class="product-image">
-        <h3>にんじん</h3>
-        <p>¥100</p>
-        <div class="overlay" id="overlay10">0</div>
-        <div class="quantity-controls" id="quantityControls10">
-            <button class="quantity-button" onclick="changeQuantity(-1, 100, 10)">-</button>
-            <button class="quantity-button" onclick="changeQuantity(1, 100, 10)">+</button>
+            <button class="quantity-button" onclick="changeQuantity(-1, cost_onion, 9)">-</button>
+            <button class="quantity-button" onclick="changeQuantity(1, cost_onion, 9)">+</button>
         </div>
     </div>
 </div>
-
-<script>
-    let totalAmount = 0;
-
-    function addProduct(productId, price) {
-        const overlay = document.getElementById(`overlay${productId}`);
-        const quantityControls = document.getElementById(`quantityControls${productId}`);
-        
-        // 商品個数を1つ増やす
-        if (overlay.style.display === "none" || overlay.style.display === "") {
-            overlay.style.display = "flex";
-            overlay.innerText = "1"; // 初期個数を1に設定
-            quantityControls.style.display = "flex";
-            totalAmount += price; // 合計金額を更新
-            document.getElementById('totalAmount').innerText = totalAmount;
-        }
-    }
-
-    function changeQuantity(change, price, productId) {
-        const overlay = document.getElementById(`overlay${productId}`);
-        let quantity = parseInt(overlay.innerText);
-        quantity += change;
-       
-        // 最小数量は0
-        if (quantity <= 0) {
-            quantity = 0;
-        }
-
-        overlay.innerText = quantity;
-
-        // 合計金額の計算
-        totalAmount = 0; // 合計金額をリセット
-        const productCards = document.querySelectorAll('.product-card');
-        productCards.forEach(card => {
-            const overlay = card.querySelector('.overlay');
-            const price = parseInt(card.querySelector('p').innerText.replace('¥', ''));
-            const quantity = parseInt(overlay.innerText);
-            totalAmount += price * quantity; // 各商品の合計を計算
-        });
-
-        // 合計金額を更新
-        document.getElementById('totalAmount').innerText = totalAmount;
-        //console.log("total",document.getElementById('totalAmount').innerText);
-
-        // 個数が0になった場合、透過グレーを解除
-        if (quantity === 0) {
-            overlay.style.display = "none !important";
-            //document.getElementById(`quantityControls${productId}`).style.display = "none"; // コントロールを非表示
-        }
-    }
-</script>
 
 </body>
 </html>
