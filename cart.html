@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>商品選択</title>
+    <title>注文確認</title>
     <link rel="stylesheet" href="css/styles.css"> <!-- CSSファイルをリンク -->
     <script src="js/script.js" defer></script> <!-- JavaScriptファイルをリンク -->
 </head>
@@ -11,8 +11,8 @@
 
 <header>
     <div class="progress-bar">
-        <div class="progress-bar-active-color container-1">①選択</div>
-        <div class="progress-bar-nonactive-color container-1">②確認</div>
+        <div class="progress-bar-nonactive-color container-1">①選択</div>
+        <div class="progress-bar-active-color container-1">②確認</div>
         <div class="progress-bar-nonactive-color container-1">③完了</div>
     </div>
     <div class="total">
@@ -22,15 +22,9 @@
 </header>
 
 <div>
-    <!--
-    <button class="container-1 forward-button" onclick="hiddenCard(), navigate_register()">レジに進む</button>
-    <button class="container-1 forward-button" onclick="hiddenCard()">レジに進む</button>
-    
-    -->
-    <button class="container-1 forward-button" onclick="navigate_register()">レジに進む</button>
+    <button class="container-1 forward-button" onclick="navigate_register()">注文する</button>
     <button class="container-1 back-button" onclick="navigate_list()">戻る</button>
 </div>
-
 
 <div class="product-container">
     <div class="product-card" id="product-card1" onclick="addProduct(1, cost_carrot)">
@@ -124,17 +118,50 @@
         </div>
     </div>
 </div>
+
+<div class="pick-up-location">
+    <div class="total">
+        <div class="container-1">受取場所</div>
+        <div class="container-2-2">名古屋市立みどり幼児園</div>
+    </div>
+    <div class="pick-up-location-details">
+        <div class="container-1">
+            <select id="category">
+                <option value="" disabled selected>大カテゴリ</option>
+                <option value="category1">幼児園</option>
+            </select>
+        </div>
+        <div class="container-1">
+            <select id="subcategory">
+                <option value="" disabled selected>詳細場所</option>
+                <option value="subcategory1">名古屋市立みどり幼児園</option>
+                <option value="subcategory2">大府市立みどり幼児園</option>
+                <option value="subcategory3">刈谷市立みどり幼児園</option>
+            </select>
+        </div>    
+    </div>
+    <div class="checkbox-container">
+        <input type="checkbox" id="checkbox1" checked>
+        <label>規定の受取場所に設定する</label>
+    </div>
+</div>
+
 <script>
-    function sessionInit(){
-        if (sessionStorage.length == 0){
-            const productCards = document.querySelectorAll('.product-card');
-            productCards.forEach(card => {
-                const overlay = card.querySelector('.overlay');
-                sessionStorage.setItem(card.id, overlay.innerText);
-            });
+    function hiddenCard(){
+        for(let key in sessionStorage){
+            let value = parseInt(sessionStorage.getItem(key));
+            //console.log("key", key);
+            //console.log("value", value);
+
+            if(value == 0){
+                document.getElementById(key).style.display = "none"; // カードを非表示
+            }
         }
+        //document.getElementById('totalAmount').innerText = totalAmount;
+        //console.log("totalA",totalAmount);
     }
-    sessionInit();
+    hiddenCard();
+
 
     function overlays() {
         for(let key in sessionStorage){
@@ -147,13 +174,16 @@
                 document.getElementById(overlay).innerText = value;
                 document.getElementById(quantityControls).style.display = "flex";    
             }
-
+            
             // if(key == "totalAmount"){
             //     document.getElementById('totalAmount').innerText = value;
+            //     // console.log("totalAmount",totalAmount);
+            //     // console.log("totalAmount",value);
             // }
         }
     }
     overlays();
+
 </script>
 
 </body>

@@ -10,12 +10,27 @@ const cost_green_papper = 50;
 const cost_onion = 30;
 
 function navigate_register() {
-    window.location.href = "https://www.google.co.jp/"; // 遷移先のURLを指定
+    window.location.href = "./cart.html"; // 遷移先のURLを指定
+    //window.location.href = "https://www.google.co.jp/"; // 遷移先のURLを指定
 }
 
+function navigate_list() {
+    window.location.href = "./index.html"; // 遷移先のURLを指定
+    //window.location.href = "https://www.google.co.jp/"; // 遷移先のURLを指定
+}
+
+// document.addEventListener('DOMContentLoaded', function(totalAmount){
+//     sessionStorage.setItem('totalAmounts', totalAmount);
+//     document.getElementById('totalAmounts').innerText = "¥" + totalAmount;    
+// });
+
 function addProduct(productId, price) {
+    //const card = document.getElementById(`card${productId}`);
+    const card = `product-card${productId}`;
+
     const overlay = document.getElementById(`overlay${productId}`);
     const quantityControls = document.getElementById(`quantityControls${productId}`);
+    
     
     // 商品個数を1つ増やす
     if (overlay.style.display === "none" || overlay.style.display === "") {
@@ -25,9 +40,15 @@ function addProduct(productId, price) {
         totalAmount += price; // 合計金額を更新
         document.getElementById('totalAmount').innerText = totalAmount;
     }
+
+    sessionStorage.setItem('totalAmount', totalAmount);
+    sessionStorage.setItem(card, overlay.innerText);
+    //console.log("card-", card);
 }
 
 function changeQuantity(change, price, productId) {
+    //const card = document.getElementById(`card${productId}`);
+    const card = `product-card${productId}`;
     const overlay = document.getElementById(`overlay${productId}`);
     let quantity = parseInt(overlay.innerText);
     quantity += change;
@@ -38,6 +59,10 @@ function changeQuantity(change, price, productId) {
     }
 
     overlay.innerText = quantity;
+
+    sessionStorage.setItem(card, overlay.innerText);
+   // console.log("card--", card);
+
 
     // 合計金額の計算
     totalAmount = 0; // 合計金額をリセット
@@ -50,6 +75,7 @@ function changeQuantity(change, price, productId) {
     });
 
     // 合計金額を更新
+    sessionStorage.setItem('totalAmount', totalAmount);
     document.getElementById('totalAmount').innerText = totalAmount;
     //console.log("total",document.getElementById('totalAmount').innerText);
 
@@ -59,3 +85,52 @@ function changeQuantity(change, price, productId) {
         //document.getElementById(`quantityControls${productId}`).style.display = "none"; // コントロールを非表示
     }
 }
+
+function sessionInit(){
+    if (sessionStorage.length == 0){
+        const productCards = document.querySelectorAll('.product-card');
+        productCards.forEach(card => {
+            const overlay = card.querySelector('.overlay');
+            sessionStorage.setItem(card.id, overlay.innerText);
+        });
+        //console.log("sessionS",sessionStorage);
+    }
+}
+
+
+// function sessionInit(){
+//     if (sessionStorage.length == 0){
+//         const productCards = document.querySelectorAll('.product-card');
+//         productCards.forEach(card => {
+//             const overlay = card.querySelector('.overlay');
+//             sessionStorage.setItem(card.id, overlay.innerText);
+//         });
+//         console.log("sessionS",sessionStorage);
+//     }
+// }
+
+
+// function hiddenCard(){
+//     for(let key in sessionStorage){
+//         let value = parseInt(sessionStorage.getItem(key));
+
+//         if(value == 0){
+//             document.getElementById(key).style.display = "none"; // カードを非表示
+//             console.log("done", sessionStorage);
+//         }
+//     }
+// }
+
+// function overlays() {
+//     for(let key in sessionStorage){
+//         let value = parseInt(sessionStorage.getItem(key));
+//         let overlay = key.replace('product-card', 'overlay');
+//         let quantityControls = key.replace('product-card', 'quantityControls');
+
+//         if(value > 0){
+//             document.getElementById(overlay).style.display = "flex";
+//             document.getElementById(overlay).innerText = value;
+//             document.getElementById(quantityControls).style.display = "flex";    
+//         }
+//     }
+// }

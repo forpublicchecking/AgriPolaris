@@ -17,6 +17,17 @@ header {
     top: 0; /* 上部に固定 */
     z-index: 1000; /* 他の要素の上に表示 */
 }
+.pick-up-location{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: white;
+    position: fixed; /* 固定位置 */
+    bottom: 0px; /* 上部に固定 */
+    padding-bottom: 100px;
+    z-index: 999; /* 他の要素の上に表示 */
+}
 .forward-button {
     position: fixed; /* 固定位置 */
     bottom: 50px; /* 下から20px */
@@ -79,6 +90,15 @@ header {
     justify-content: center; /* 水平方向に中央揃え */
     box-sizing: border-box; /* パディングを含めたサイズ計算 */
 }
+.container-2-2{
+    font-weight: bold;
+    font-size: 1em;
+    flex: 2; /* 各要素が均等にスペースを占める */
+    text-align: center;
+    align-items: center; /* 垂直方向に中央揃え */
+    justify-content: center; /* 水平方向に中央揃え */
+    box-sizing: border-box; /* パディングを含めたサイズ計算 */
+}
 .progress-bar {
     font-size: 1.2em;
     display: flex;
@@ -104,6 +124,39 @@ header {
     padding: 10px;
     display: flex;
     flex-direction: row;
+}
+.pick-up-location-details {
+    font-size: 2em;
+    border-radius: 10px;
+    background-color: white;
+    color: rgba(211, 211, 211, 1);
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+}
+select{
+    width: 150px;
+    height: 30px;
+    text-align: center;
+    font-size: 18px;
+    border-color: rgba(211, 211, 211, 1);
+    border-radius: 5px;
+}
+.checkbox-container{
+    display: flex;
+    align-items: center; /* 水平方向に中央揃え */
+    justify-content: center; /* 水平方向に中央揃え */
+    margin: 10px;
+    padding: 10px;
+}
+input[type="checkbox"]{
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+input[type="checkbox"]:checked{
+    background:  rgba(0, 97, 44, 1);
 }
 .product-container {
     display: grid;
