@@ -62,6 +62,39 @@ header {
     cursor: pointer; /* カーソルをポインターに */
     z-index: 1000; /* 他の要素の上に表示 */
 }
+.close-button {
+    position: fixed; /* 固定位置 */
+    bottom: 50px; /* 下から20px */
+    background-color: rgba(0, 176, 80, 1); /* ボタンの背景色 */
+    color: white; /* テキスト色 */
+    border: none; /* ボーダーなし */
+    border-radius: 50px; 
+    width: 150px; /* 幅 */
+    height: 50px; /* 高さ */
+    font-size: 1.2em; /* フォントサイズ */
+    display: flex; /* フレックスボックスを使用 */
+    align-items: center; /* 垂直方向に中央揃え */
+    justify-content: center; /* 水平方向に中央揃え */
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25); /* シャドウ効果 */
+    cursor: pointer; /* カーソルをポインターに */
+    z-index: 1000; /* 他の要素の上に表示 */
+}
+.back-button-center {
+    position: fixed; /* 固定位置 */
+    bottom: 50px; /* 下から20px */
+    justify-content: center; /* 水平方向に中央揃え */
+    background-color: rgba(153, 153, 153, 1); /* ボタンの背景色 */
+    color: white; /* テキスト色 */
+    border: none; /* ボーダーなし */
+    border-radius: 50px; 
+    width: 100px; /* 幅 */
+    height: 50px; /* 高さ */
+    font-size: 1.2em; /* フォントサイズ */
+    display: flex; /* フレックスボックスを使用 */
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25); /* シャドウ効果 */
+    cursor: pointer; /* カーソルをポインターに */
+    z-index: 1000; /* 他の要素の上に表示 */
+}
 .circle-number{
     background-color: rgba(0, 97, 44, 1); /* ボタンの背景色 */
     color: white; /* テキスト色 */
@@ -70,6 +103,13 @@ header {
     width: 60px; /* 幅 */
     height: 60px; /* 高さ */
     font-size: 24px; /* フォントサイズ */
+    align-items: center; /* 垂直方向に中央揃え */
+    justify-content: center; /* 水平方向に中央揃え */
+}
+.container-receive{
+    display: flex;
+    font-weight: bold;
+    text-align: center;
     align-items: center; /* 垂直方向に中央揃え */
     justify-content: center; /* 水平方向に中央揃え */
 }
@@ -157,6 +197,14 @@ input[type="checkbox"]{
 }
 input[type="checkbox"]:checked{
     background:  rgba(0, 97, 44, 1);
+}
+.appreciate-container {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 110px;
+    padding: 50px; /* 上部に余白を追加 */
+    width: 100%;
+    max-width: 500px;
 }
 .product-container {
     display: grid;

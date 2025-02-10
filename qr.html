@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QRコード読み取り</title>
+    <link rel="stylesheet" href="./css/indexs.css" />
+    <style>
+        video {
+            width: 100%;
+            max-width: 600px;
+            border: 5px solid #333;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        #qr-result {
+            font-size: 1.2em;
+        }
+    </style>
+    <script type="module">
+        import QrScanner from "https://esm.sh/qr-scanner@1.4.2/qr-scanner.min.js";
+        QrScanner.WORKER_PATH = "https://esm.sh/qr-scanner@1.4.2/qr-scanner-worker.min.js";
+
+        window.addEventListener("DOMContentLoaded", () => {
+            const videoElem = document.getElementById("qr-video");
+            const resultElem = document.getElementById("qr-result");
+            const scannedResults = [];
+            const maxResults = 8;
+
+            const qrScanner = new QrScanner(videoElem, result => {
+                const data = result.data;
+                // 既に登録されている場合は何もしない
+                if (scannedResults.includes(data)) {
+                    return;
+                }
+                // 古い結果から最大件数を超えた場合は削除
+                if (scannedResults.length >= maxResults) {
+                    scannedResults.shift();
+                }
+                scannedResults.push(data);
+                resultElem.innerText =
+                    `読み取り結果 (${scannedResults.length}/${maxResults}):\n` +
+                    scannedResults.join("\n");
+            }, {
+                onDecodeError: error => { /* エラーを無視 */ },
+                highlightScanRegion: true,
+            });
+            qrScanner.start();
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">QRコード読み取り</div>
+        <video id="qr-video"></video>
+        <div id="qr-result">読み取り結果: なし</div>
+        <div class="button-container">
+            <a href="./get.html" class="button button-gray">中断する</a>
+        </div>
+    </div>
+</body>
+
+</html>

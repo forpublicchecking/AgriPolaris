@@ -16,8 +16,26 @@ function navigate_register() {
 
 function navigate_list() {
     window.location.href = "./index.html"; // 遷移先のURLを指定
-    //window.location.href = "https://www.google.co.jp/"; // 遷移先のURLを指定
 }
+
+function navigate_complete() {
+    window.location.href = "./complete.html"; // 遷移先のURLを指定
+    //window.open("./complete.html"); // 遷移先のURLを指定
+}
+
+function index_buy() {
+    window.location.href = "./buy.html"; // 遷移先のURLを指定
+}
+
+function index_check() {
+    window.location.href = "./check.html"; // 遷移先のURLを指定
+}
+
+function index_set() {
+    window.location.href = "./setting.html"; // 遷移先のURLを指定
+}
+
+
 
 // document.addEventListener('DOMContentLoaded', function(totalAmount){
 //     sessionStorage.setItem('totalAmounts', totalAmount);
@@ -134,3 +152,21 @@ function sessionInit(){
 //         }
 //     }
 // }
+function overlays() {
+    for(let key in sessionStorage){
+        let value = parseInt(sessionStorage.getItem(key));
+        let overlay = key.replace('product-card', 'overlay');
+        let quantityControls = key.replace('product-card', 'quantityControls');
+
+        if(value > 0){
+            document.getElementById(overlay).style.display = "flex";
+            document.getElementById(overlay).innerText = value;
+            document.getElementById(quantityControls).style.display = "flex";    
+        }
+
+        // if(key == "totalAmount"){
+        //     document.getElementById('totalAmount').innerText = value;
+        // }
+    }
+}
+window.onload = overlays;

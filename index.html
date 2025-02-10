@@ -6,6 +6,7 @@
     <title>商品選択</title>
     <link rel="stylesheet" href="css/styles.css"> <!-- CSSファイルをリンク -->
     <script src="js/script.js" defer></script> <!-- JavaScriptファイルをリンク -->
+
 </head>
 <body>
 
@@ -28,7 +29,7 @@
     
     -->
     <button class="container-1 forward-button" onclick="navigate_register()">レジに進む</button>
-    <button class="container-1 back-button" onclick="navigate_list()">戻る</button>
+    <button class="container-1 back-button" onclick="index_buy()">戻る</button>
 </div>
 
 
@@ -134,26 +135,8 @@
             });
         }
     }
+
     sessionInit();
-
-    function overlays() {
-        for(let key in sessionStorage){
-            let value = parseInt(sessionStorage.getItem(key));
-            let overlay = key.replace('product-card', 'overlay');
-            let quantityControls = key.replace('product-card', 'quantityControls');
-
-            if(value > 0){
-                document.getElementById(overlay).style.display = "flex";
-                document.getElementById(overlay).innerText = value;
-                document.getElementById(quantityControls).style.display = "flex";    
-            }
-
-            // if(key == "totalAmount"){
-            //     document.getElementById('totalAmount').innerText = value;
-            // }
-        }
-    }
-    overlays();
 </script>
 
 </body>
