@@ -54,7 +54,7 @@ function addProduct(productId, price) {
 
     const overlay = document.getElementById(`overlay${productId}`);
     const quantityControls = document.getElementById(`quantityControls${productId}`);
-    
+    totalAmount = parseInt(document.getElementById('totalAmount').innerText);
     
     // 商品個数を1つ増やす
     if (overlay.style.display === "none" || overlay.style.display === "") {
