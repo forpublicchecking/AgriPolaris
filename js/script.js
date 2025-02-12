@@ -42,6 +42,12 @@ function index_set() {
 //     document.getElementById('totalAmounts').innerText = "¥" + totalAmount;    
 // });
 
+function displaySelectedOption() {
+    var dropdown = document.getElementById("subcategory");
+    var selectedOption = dropdown.options[dropdown.selectedIndex].text;
+    document.getElementById("selectedOption").innerText = selectedOption;
+}
+
 function addProduct(productId, price) {
     //const card = document.getElementById(`card${productId}`);
     const card = `product-card${productId}`;

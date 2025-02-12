@@ -13,7 +13,7 @@
 
     <div class="total">
         <div class="container-1">受取場所</div>
-        <div class="container-2-2">名古屋市立みどり幼児園</div>
+        <div class="container-2-2" id="selectedOption">-</div>
     </div>
     <div class="pick-up-location-details">
         <div class="container-1">
@@ -23,7 +23,7 @@
             </select>
         </div>
         <div class="container-1">
-            <select id="subcategory">
+            <select id="subcategory" onchange="displaySelectedOption()">
                 <option value="" disabled selected>詳細場所</option>
                 <option value="subcategory1">名古屋市立みどり幼児園</option>
                 <option value="subcategory2">大府市立みどり幼児園</option>
@@ -38,7 +38,7 @@
 </header>
 
 <div>
-    <button class="container-1 forward-button" onclick="">決定する</button>
+    <button class="container-1 forward-button" onclick="index_set()">決定する</button>
     <button class="container-1 back-button" onclick="index_set()">戻る</button>
 </div>
 

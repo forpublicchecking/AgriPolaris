@@ -6,7 +6,6 @@
     <title>注文確認</title>
     <link rel="stylesheet" href="css/styles.css"> <!-- CSSファイルをリンク -->
     <script src="js/script.js" defer></script> <!-- JavaScriptファイルをリンク -->
-
 </head>
 <body>
 
@@ -17,8 +16,8 @@
         <div class="progress-bar-nonactive-color container-1">③完了</div>
     </div>
     <div class="total">
-        <div class="container-1">合計金額</div>
-        <div class="container-2">¥<span id="totalAmount">0</span></div>
+        <div class="container-1">合計金額 (¥)</div>
+        <div class="container-2" id="totalAmount">0</div>
     </div>
 </header>
 
@@ -123,7 +122,7 @@
 <div class="pick-up-location">
     <div class="total">
         <div class="container-1">受取場所</div>
-        <div class="container-2-2">名古屋市立みどり幼児園</div>
+        <div class="container-2-2" id="selectedOption">-</div>
     </div>
     <div class="pick-up-location-details">
         <div class="container-1">
@@ -133,7 +132,7 @@
             </select>
         </div>
         <div class="container-1">
-            <select id="subcategory">
+            <select id="subcategory" onchange="displaySelectedOption()">
                 <option value="" disabled selected>詳細場所</option>
                 <option value="subcategory1">名古屋市立みどり幼児園</option>
                 <option value="subcategory2">大府市立みどり幼児園</option>
